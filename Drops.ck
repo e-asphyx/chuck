@@ -30,7 +30,7 @@ fun void drop()
     .99 => f.prad;
     1 => f.eqzs;
     
-    150::ms => dur max_delay;
+    20::ms => dur max_delay;
     max_delay * 2 => l_del.max;
     max_delay * 2 => r_del.max;
 
