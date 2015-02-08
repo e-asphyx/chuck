@@ -1,13 +1,18 @@
 fun void recorder()
 {
-    dac => Gain g => WvOut w => blackhole;
+    dac.chan(0) => WvOut w0 => blackhole;
+    dac.chan(1) => WvOut w1 => blackhole;
     
-    "chuck-session" => w.autoPrefix;
-    "special:auto" => w.wavFilename;
-    <<<"writing to file: ", w.filename()>>>;
+    "chuck-session-l" => w0.autoPrefix;
+    "chuck-session-r" => w1.autoPrefix;
 
-    1 => g.gain;
-    null @=> w;
+    "special:auto" => w0.wavFilename;
+    "special:auto" => w1.wavFilename;
+
+    <<<"writing to files: ", w0.filename(), w1.filename()>>>;
+
+    null @=> w0;
+    null @=> w1;
     
     while( true ) 1::second => now;
 }
